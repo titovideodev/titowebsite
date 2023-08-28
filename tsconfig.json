@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Header/index.jsx", "components/Header/index.jsx", "app/signin/page.jsx", "app/signup/index.jsx", "components/Testimonials/index.jsx", "components/Testimonials/index.jsx", "app/postuler/page.jsx", "components/MontageForm/index.jsx", "components/Team/index.jsx", "components/Signup/index.jsx"],
+  "exclude": ["node_modules"]
+}
