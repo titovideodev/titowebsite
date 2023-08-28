@@ -1,9 +1,37 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { signIn} from "next-auth/react";
 
 
 const SigninForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState([]); 
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res.error) {
+        setError("Invalid Credentials");
+        return;
+      }
+
+      router.replace("dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="relative z-10 overflow-hidden pt-36 pb-16 md:pb-20 lg:pt-[180px] lg:pb-28">
@@ -62,7 +90,7 @@ const SigninForm = () => {
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[70px] bg-body-color sm:block"></span>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
                       htmlFor="email"
@@ -71,6 +99,7 @@ const SigninForm = () => {
                       Email
                     </label>
                     <input
+                        onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       placeholder="Entrez votre Email"
@@ -85,6 +114,7 @@ const SigninForm = () => {
                       Mot de passe
                     </label>
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       name="password"
                       placeholder="Entrez votre mot de passe"
@@ -126,13 +156,7 @@ const SigninForm = () => {
                       </label>
                     </div>
                     <div>
-                      <a
-                        href="#0"
-                        className="text-sm font-medium text-primary hover:underline"
-                      >
-                        Mot de passe oublié
-
-                      </a>
+                    
                     </div>
                   </div>
                   <div className="mb-6">

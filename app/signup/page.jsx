@@ -4,18 +4,39 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const SignupPage = () => {
-  const [error, setError] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target[0].value;
-    const email = e.target[1].value;
-    const password = e.target[2].value;
+
+    if (!name || !email || !password) {
+      setError("All fields are necessary.");
+      return;
+    }
 
     try {
-      const res = await fetch("/api/auth/register", {
+      const resUserExists = await fetch("api/userExists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const { user } = await resUserExists.json();
+
+      if (user) {
+        setError("User already exists.");
+        alert("User already exists.");
+        return;
+      }
+
+      const res = await fetch("api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,10 +47,16 @@ const SignupPage = () => {
           password,
         }),
       });
-      res.status === 201 && router.push("/dashboard/login?success=Account has been created");
-    } catch (err) {
-      setError(err);
-      console.log(err);
+
+      if (res.ok) {
+        const form = e.target;
+        form.reset();
+        router.push("/");
+      } else {
+        console.log("User registration failed.");
+      }
+    } catch (error) {
+      console.log("Error during registration: ", error);
     }
   };
   return (
@@ -88,7 +115,7 @@ const SignupPage = () => {
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color sm:block"></span>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
                       htmlFor="name"
@@ -98,6 +125,7 @@ const SignupPage = () => {
                       Nom complet{" "}
                     </label>
                     <input
+                      onChange={(e) => setName(e.target.value)}
                       type="text"
                       name="name"
                       placeholder="Entrez votre nom complet"
@@ -113,6 +141,7 @@ const SignupPage = () => {
                       Email{" "}
                     </label>
                     <input
+                      onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       placeholder="Entrez votre Email"
@@ -128,6 +157,7 @@ const SignupPage = () => {
                       Mot de passe{" "}
                     </label>
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       name="password"
                       placeholder="Entrez votre mot de passe"
@@ -182,6 +212,11 @@ const SignupPage = () => {
                     <button className="flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
                       Inscription
                     </button>
+                              {error && (
+                      <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+                        {error}
+                      </div>
+                    )}
                   </div>
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
