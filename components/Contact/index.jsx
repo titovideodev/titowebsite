@@ -1,6 +1,47 @@
+"use client";
+
+import { useState } from "react";
+
 import NewsLatterBox from "./NewsLatterBox";
 
 const Contact = () => {
+
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState([]);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log("Full name: ", fullname);
+    console.log("Email: ", email);
+    console.log("Message: ", message);
+
+    const res = await fetch("api/contact", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        fullname,
+        email,
+        message,
+      }),
+    });
+
+    const { msg, success } = await res.json();
+    setError(msg);
+    setSuccess(success);
+
+    if (success) {
+      setFullname("");
+      setEmail("");
+      setMessage("");
+    }
+  };
+
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -17,7 +58,7 @@ const Contact = () => {
               <p className="mb-12 text-base font-medium text-body-color">
                Notre équipe vous répondra d-s que possible par mail
               </p>
-              <form>
+              <form  onSubmit={handleSubmit}>
                 <div className="-mx-4 flex flex-wrap">
                   <div className="w-full px-4 md:w-1/2">
                     <div className="mb-8">
@@ -28,6 +69,8 @@ const Contact = () => {
                         Nom complet
                       </label>
                       <input
+                       onChange={(e) => setFullname(e.target.value)}
+                       value={fullname}
                         type="text"
                         placeholder="Nom complet"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
@@ -43,6 +86,8 @@ const Contact = () => {
                         Email
                       </label>
                       <input
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                         type="email"
                         placeholder="Entrez votre email"
                         className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
@@ -58,6 +103,8 @@ const Contact = () => {
                         Vos messages
                       </label>
                       <textarea
+                       onChange={(e) => setMessage(e.target.value)}
+                       value={message}
                         name="message"
                         rows={5}
                         placeholder="Entrez votre Message"

@@ -12,16 +12,16 @@ import {
 import Link from 'next/link';
 
 
-interface User {
+interface Messages {
   id: number;
   name: string;
   username: string;
   email: string;
 }
 
-export default function UsersTable({ users }: { users: User[] }) {
+export default function MessagesTable({ messages }: { Messages: Messages[] }) {
   return (
-    <section id="portfolio" className="relative z-10 py-36 md:py-40 lg:py-28">
+    <section id="portfolio" className="relative z-10 py-16 md:py-20 lg:py-28">
     
         <SectionTitle
           title="Bienvenue sur la page admin"
@@ -39,7 +39,7 @@ export default function UsersTable({ users }: { users: User[] }) {
             Postulants         
           </Link>
 
-          <div style={{ width: '40px' }} />
+          <div style={{ width: '20px' }} />
           <Link 
             href="/commandes"
             className="ease-in-up rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
@@ -59,6 +59,19 @@ export default function UsersTable({ users }: { users: User[] }) {
                        
           </div>
         </div>
+
+        <div className="container">
+            <Table>
+            <TableHead>
+                <TableRow>
+                <TableHeaderCell>Name</TableHeaderCell>
+                <TableHeaderCell>Username</TableHeaderCell>
+                <TableHeaderCell>Email</TableHeaderCell>
+                </TableRow>
+            </TableHead>
+        
+    </Table>
+    </div>
        
     
     </section>

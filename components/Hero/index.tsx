@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {fadeIn} from '../variants';
 import ParticlesContainer from "../ParticlesContainer";
-import TestModals from "../modal";
 import TransitionsModal from "../TransitionsModal";
 
 const Hero : React.FC = () => {
@@ -16,7 +15,7 @@ const Hero : React.FC = () => {
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden pt-[80px] pb-16 md:pt-[80px] md:pb-[80px] xl:pt-[180px] xl:pb-[160px] 2xl:pt-[50px] 2xl:pb-[100px]"
+        className="relative z-10 overflow-hidden pt-[100px] pb-16 md:pt-[100px] md:pb-[80px] xl:pt-[180px] xl:pb-[160px] 2xl:pt-[50px] 2xl:pb-[100px]"
       >
           <div className="px-4 xl:container">
         <div className="-mx-4 flex flex-wrap items-center">

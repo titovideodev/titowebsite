@@ -5,6 +5,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image';
+import Gift from '../public/images/Modal.png';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -41,13 +43,9 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-             Système de fidélisation 
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Pour chaque commande effectuée, vous gagnez 1 Tito qui est l'équivalent de 10€.
-              Profitez-en pour vous faire plaisir !
-            </Typography>
+           
+            <Image src={Gift} width={350} height={350} objectFit="contain" alt={''} />
+           
           </Box>
         </Fade>
       </Modal>
