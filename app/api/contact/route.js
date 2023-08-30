@@ -27,3 +27,9 @@ export async function POST(req) {
     }
   }
 }
+
+export async function GET() {
+  await connectDB();
+  const message = await Contact.find();
+  return NextResponse.json({ message });
+}

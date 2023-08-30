@@ -41,7 +41,7 @@ const MontageForm = () => {
     },
     {
       id: 6,
-      title: "Evènement",
+      title: "Event",
       icon: <MdEvent className="w-6 h-6 text-gray-500 mr-2" />,
       color: "#74D0F1",
     },
@@ -63,7 +63,7 @@ const MontageForm = () => {
   };
 
   return (
-    <section className="relative z-10 overflow-hidden pt-36 pb-16 md:pb-20 lg:pt-[180px] lg:pb-28">
+    <section className="relative z-10 overflow-hidden pt-30 pb-16 md:pb-20 lg:pt-[70px] lg:pb-28">
     <div className="container">
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4">

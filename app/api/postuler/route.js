@@ -12,7 +12,7 @@ export async function POST(request) {
 export async function GET() {
   await connectMongoDB();
   const postuler = await Postuler.find();
-  return NextResponse.json({ topics });
+  return NextResponse.json({ postuler });
 }
 
 export async function DELETE(request) {

@@ -33,7 +33,7 @@ export default function UsersTable({ users }: { users: User[] }) {
 
          <div className="flex items-center justify-center pr-16 lg:pr-0">
          <Link 
-            href="/postulants"
+            href="/admin/postulants"
             className="ease-in-up rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
           >
             Postulants         
@@ -41,7 +41,7 @@ export default function UsersTable({ users }: { users: User[] }) {
 
           <div style={{ width: '40px' }} />
           <Link 
-            href="/commandes"
+            href="/admin/commandes"
             className="ease-in-up rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
           >
             Commandes
@@ -50,7 +50,7 @@ export default function UsersTable({ users }: { users: User[] }) {
 
           <div style={{ width: '20px' }} />
           <Link 
-            href="/messages"
+            href="/admin/messages"
             className="ease-in-up rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
           >
             Messages

@@ -4,7 +4,7 @@ import blogData from "./blogData";
 
 const Blog = () => {
   return (
-    <section id="blog" className="bg-primary/5 py-16 md:py-20 lg:py-28">
+    <section id="blog"className="relative z-10 py-36 md:py-40 lg:py-28">
       <div className="container">
         <SectionTitle
           title="Découvrez nos derniers articles"
