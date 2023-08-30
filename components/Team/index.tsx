@@ -10,6 +10,7 @@ const Team = () => {
     const wrapperRef = useRef<HTMLUListElement | null>(null);
     const timeoutRef = useRef<number | null>(null);
   
+    
     useEffect(() => {
       if (!wrapperRef.current) return;
       if (timeoutRef.current) {

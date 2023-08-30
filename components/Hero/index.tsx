@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {fadeIn} from '../variants';
 import ParticlesContainer from "../ParticlesContainer";
 import TestModals from "../modal";
+import TransitionsModal from "../TransitionsModal";
 
 const Hero : React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -28,7 +29,7 @@ const Hero : React.FC = () => {
               <span
                 className="wow fadeInUp mb-8 inline-block rounded-full"
                 data-wow-delay=".2s">
-                <TestModals />
+                <TransitionsModal/>
         
                 
               </span>
